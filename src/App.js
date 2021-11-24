@@ -1,9 +1,11 @@
 import React,{Component} from "react";
+import './App.css'
 
 class App extends Component  {
   render(){
     return (
       <div>
+        <div className='title'>CV Maker</div>
         <form>
           <div className='personalInfo'>
             <h3>Personal Information</h3>
@@ -30,8 +32,14 @@ class App extends Component  {
             <p>Position Title</p>
             <input type='text' id='positionTitle' placeholder='Position Title'/>
             <p>Job Duty</p>
-            <input type='date' id='duty' placeholder='Job Duty'/>
+            <input type='text' id='duty' placeholder='Job Duty'/>
+            <p>Date From</p>
+            <input type='date' id='dateFrom' placeholder='Date From'/>
+            <p>Date To</p>
+            <input type='date' id='dateTo' placeholder='Date To'/>
           </div>
+          <button type="submit">Submit</button>
+          <button type="button">Edit</button>
         </form>
       </div>
     );
