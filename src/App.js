@@ -1,8 +1,8 @@
 import React,{Component} from "react";
-import General from "./components/General";
-import Education from "./components/Education";
-import Working from "./components/Working";
 import './App.css'
+import Contact from "./components/Contact";
+import School from "./components/School";
+import Job from "./components/Job";
 
 class App extends Component  {
 
@@ -10,9 +10,9 @@ class App extends Component  {
     return (
       <div>
         <div className='title'>CV Maker</div>
-          <General/>
-          <Education/>
-          <Working/>
+          <Contact/>
+          <School/>
+          <Job/>
       </div>
     );
   }
