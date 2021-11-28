@@ -1,7 +1,22 @@
 .title{
-    background-color: aquamarine;
+    background-color: black;
     font-size: xx-large;
     text-align: center;
     font-weight: bold;
+    color: white;
     padding: 1rem;
+}
+
+.body{
+    display:flex;
+
+}
+
+.inputfield{
+    background-color: grey;
+    flex-grow: 1;
+}
+
+.preview{
+    flex-grow:2;
 }

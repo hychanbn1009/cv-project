@@ -1,11 +1,14 @@
 import React,{useState} from "react";
 
-const School =()=>{
-    const [schoolName,setSchoolName]=useState('');
-    const [schoolTitle,setSchoolTitle]=useState('');
-    const [studyDate,setStudyDate]=useState('');
-    const [gradDate,setGradDate]=useState('');
+const School =(props)=>{
     const [display,setDisplay]=useState(true);
+
+    const onFieldChange=(event)=> {
+        // for a regular input field, read field name and value from the event
+        const fieldName = event.target.name;
+        const fieldValue = event.target.value;
+        props.onChange(fieldName, fieldValue);
+    }
 
     return(
         <div>
@@ -13,22 +16,22 @@ const School =()=>{
                 {display && (<div className='personalInfo'>
                     <h3>Educational Experience</h3>
                     <p>School Name</p>
-                    <input onChange={event=>setSchoolName(event.target.value)} value={schoolName} type='text' id='schoolName' placeholder='School Name'/>
+                    <input onChange={onFieldChange} value={props.schoolName} type='text' name='schoolName' placeholder='School Name'/>
                     <p>Title of study</p>
-                    <input onChange={event=>setSchoolTitle(event.target.value)} value={schoolTitle} type='text' id='schoolTitle' placeholder='School Title'/>
+                    <input onChange={onFieldChange} value={props.schoolTitle} type='text' name='schoolTitle' placeholder='School Title'/>
                     <p>From:</p>
-                    <input onChange={event=>setStudyDate(event.target.value)} value={studyDate} type='date' id='studyDate' placeholder='Entry Date'/>
+                    <input onChange={onFieldChange} value={props.studyDate} type='text' name='studyDate' placeholder='Entry Date'/>
                     <p>To:</p>
-                    <input onChange={event=>setGradDate(event.target.value)} value={gradDate} type='date' id='gradDate' placeholder='Graduation Date'/>
+                    <input onChange={onFieldChange} value={props.gradDate} type='text' name='gradDate' placeholder='Graduation Date'/>
                 </div>)}
             </form>
             {display ===false && (<div>
-                School Name:{schoolName}<br/>
-                Title of study:{schoolTitle}<br/>
-                From:{studyDate} -- {gradDate}
+                School Name:{props.schoolName}<br/>
+                Title of study:{props.schoolTitle}<br/>
+                From:{props.studyDate} -- {props.gradDate}
             </div>)}
             <button type="submit" onClick={()=>setDisplay(false)}>Submit</button>
-            <button type="button" onClick={()=>setDisplay(false)}>Edit</button>
+            <button type="button" onClick={()=>setDisplay(true)}>Edit</button>
         </div>
     )
 }

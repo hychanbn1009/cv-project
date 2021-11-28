@@ -1,0 +1,27 @@
+.CVpage{
+    padding: 2rem 3rem;
+    background-color: khaki;
+    width: 21cm;
+    min-height: 29.7cm;
+    padding: 2rem;
+    border: 1px #D3D3D3 solid;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.personalInfo{
+    margin: 0px;
+    padding: 0px;
+}
+
+.personalInfo p{
+    margin: 0px;
+    padding: 0px;
+}
+
+.contact{
+}
+
+.contactMethod{
+    display:flex;
+}
