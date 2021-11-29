@@ -26,6 +26,14 @@ const Preview=(props)=>{
             <hr/>
             <div className='SchoolInfo'>
                 <h2>Education</h2>
+                {props.educations.map((education)=>{
+                    return <li key={education.id}>
+                        {education.schoolName}<br/>
+                        {education.schoolTitle}<br/>
+                        {education.studyDate}<br/>
+                        {education.gradDate}
+                        </li>
+                })}
             </div>    
 
             

@@ -4,6 +4,7 @@ import Contact from "./components/Contact";
 import School from './components/School'
 import Job from './components/Job'
 import Preview from "./components/Preview";
+import uniqid from 'uniqid';
 
 class App extends Component  {
   constructor(props) {
@@ -39,6 +40,7 @@ class App extends Component  {
         schoolTitle:'Secondary School',
         studyDate:'08/2009',
         gradDate:'09/2015',
+        id:uniqid(),
       },
       educations:[],
       job:{
@@ -47,16 +49,20 @@ class App extends Component  {
         duty:'do something',
         dateFrom:'11/2020',
         dateTo:'11/2020',
-      }
+        id:'',
+      },
+      jobs:[],
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleEducationChange = this.handleEducationChange.bind(this);
     this.handleJobChange = this.handleJobChange.bind(this);
+    this.onSubmitEducation = this.onSubmitEducation.bind(this);
   }
 
   handleInputChange(field,value) {
     this.setState({
-      [field]: value
+      [field]: value,
+      
     });
   }
 
@@ -65,9 +71,8 @@ class App extends Component  {
       education:{
         ...this.state.education,
         [field]: value,
-      }
-    });
-  }
+      },
+  })}
 
   handleJobChange(field,value) {
     this.setState({
@@ -78,15 +83,32 @@ class App extends Component  {
     });
   }
 
+  onSubmitEducation=()=>{
+    this.setState({
+      educations:this.state.educations.concat(this.state.education),
+      education:{
+        schoolName:'',
+        schoolTitle:' ',
+        studyDate:'',
+        gradDate:'',
+        id:uniqid(),
+      }
+    })
+    
+  }
+
   render(){
-    const {name,email,title,phone,summary,education:{schoolName}}=this.state;
+    const {name,email,title,phone,summary,education:{schoolName},educations}=this.state;
     return (
       <div>
         <div className='title'>CV Maker</div>
           <div className='body'>
             <div className='inputfield'>
               <Contact name={name} email={email} phone={phone} title={title} summary={summary} onChange={this.handleInputChange}/>
-              <School schoolName={this.state.education.schoolName} schoolTitle={this.state.education.schoolTitle} studyDate={this.state.education.studyDate} gradDate={this.state.education.gradDate} onChange={this.handleEducationChange}/>
+              <School schoolName={this.state.education.schoolName} schoolTitle={this.state.education.schoolTitle} 
+              studyDate={this.state.education.studyDate} gradDate={this.state.education.gradDate} 
+              educations={this.state.educations}
+              onChange={this.handleEducationChange} onSubmit={this.onSubmitEducation}/>
               <Job companyName={this.state.job.companyName} positionTitle={this.state.job.positionTitle} duty={this.state.job.duty} dateFrom={this.state.job.dateFrom} dateTo={this.state.job.dateTo} onChange={this.handleJobChange}/>
             </div>
             <div className='preview'>
@@ -95,10 +117,12 @@ class App extends Component  {
               email={email}
               phone={phone}
               title={title}
+              educations={educations}
               schoolName={schoolName}
               summary={summary}
                />
             </div>
+            {console.log(educations)}
           </div>  
       </div>
     );
