@@ -1,23 +1,22 @@
+.body{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .title{
     background-color: black;
-    font-size: xx-large;
-    text-align: center;
-    font-weight: bold;
     color: white;
-    padding: 1rem;
-    width: 1vp;
-}
-
-.body{
-    display:flex;
-
-}
-
-.inputfield{
-    background-color: grey;
-    flex-grow: 1;
+    text-align: center;
+    font-size: xx-large;
 }
 
 .preview{
-    flex-grow:2;
+    flex:1.5;
+    padding: 2rem 2rem;
+}
+
+.inputfield{
+    flex:0.5;
+    padding: 2rem 2rem;
+    background-color: gray;
 }

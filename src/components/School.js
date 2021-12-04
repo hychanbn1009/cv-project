@@ -1,59 +1,44 @@
-import React,{useState} from "react";
+import React from "react";
 
 const School =(props)=>{
-    const [display,setDisplay]=useState(true);
 
-    const onFieldChange=(event)=> {
-        // for a regular input field, read field name and value from the event
-        const fieldName = event.target.name;
-        const fieldValue = event.target.value;
-        const id=event.target.id
-        console.log(event.target)
-        props.onChange(fieldName, fieldValue,id);
-    }
+    // handle input change
+    const InputField = (event, index) => {
+        const { name, value } = event.target;
+        props.educationChange(name,value,index)
+    };
 
-    const onSubmitChange=(event)=> {
-        // for a regular input field, read field name and value from the event
-        const fieldName = event.target.name;
-        const fieldValue = event.target.value;
-        const fieldId=event.target.id;
-        console.log(fieldId)
-        props.onSubmit(fieldName, fieldValue,fieldId);
-    }
-
+    // handle click event of the Remove button
+    const RemoveInput = (event,index) => {
+        event.preventDefault();
+        props.removeEducation(event,index);
+    };
 
     return(
         <div>
-            <form>
-                <div className='personalInfo'>
-                    <h3>Educational Experience</h3>
-                    <p>School Name</p>
-                    <input onChange={onFieldChange} value={props.educations.schoolName} type='text' name='schoolName' placeholder='School Name'/>
-                    <p>Title of study</p>
-                    <input onChange={onFieldChange} value={props.educations.schoolTitle} type='text' name='schoolTitle' placeholder='School Title'/>
-                    <p>From:</p>
-                    <input onChange={onFieldChange} value={props.educations.studyDate} type='text' name='studyDate' placeholder='Entry Date'/>
-                    <p>To:</p>
-                    <input onChange={onFieldChange} value={props.educations.gradDate} type='text' name='gradDate' placeholder='Graduation Date'/>
-                </div>
-            </form>
-            {props.educations.map((education) => (
-            <form key={education.id}>
-                <div className='personalInfo'>
-                    <h3>Educational Experience</h3>
-                    <p>School Name</p>
-                    <input onChange={onFieldChange} value={props.educations.schoolName} type='text' name='schoolName' placeholder='School Name'/>
-                    <p>Title of study</p>
-                    <input onChange={onFieldChange} value={props.educations.schoolTitle} type='text' name='schoolTitle' placeholder='School Title'/>
-                    <p>From:</p>
-                    <input onChange={onFieldChange} value={props.educations.studyDate} type='text' name='studyDate' placeholder='Entry Date'/>
-                    <p>To:</p>
-                    <input onChange={onFieldChange} value={props.educations.gradDate} type='text' name='gradDate' placeholder='Graduation Date'/>
-                </div>
-            </form>)
-            )}
-                <button type="submit" onClick={onSubmitChange}>Submit</button>
-                <button type="button" onClick={()=>setDisplay(false)}>Edit</button>
+            <h3>Educational Experience</h3>
+            {props.educations.map((educationDetails,i)=>{
+                return(
+                    <form>
+                        <div className='personalInfo'>
+                            <label htmlFor='schoolName'>School Name</label>
+                            <input onChange={event => InputField(event, i)} value={educationDetails.schoolName} type='text' name='schoolName' placeholder='School Name'/>
+                            <label htmlFor='schoolTitle'>Title of study</label>
+                            <input onChange={event => InputField(event, i)} value={educationDetails.schoolTitle} type='text' name='schoolTitle' placeholder='School Title'/>
+                            <label htmlFor='studyDate'>From:</label>
+                            <input onChange={event => InputField(event, i)} value={educationDetails.studyDate} type='text' name='studyDate' placeholder='Entry Date'/>
+                            <label htmlFor='gradDate'>To:</label>
+                            <input onChange={event => InputField(event, i)} value={educationDetails.gradDate} type='text' name='gradDate' placeholder='Graduation Date'/>
+                        </div>
+                        <div className="btn-box">
+                            {props.educations.length !== 1 && <button
+                            className="mr10"
+                            onClick={(event) => RemoveInput(event,i)}>Remove</button>}
+                            {props.educations.length - 1 === i && <button onClick={(event)=> props.addEducation(event)}>Add</button>}
+                        </div>
+                    </form>
+                )
+            })}
         </div>
     )
 }

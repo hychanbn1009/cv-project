@@ -1,41 +1,46 @@
-import React,{useState} from "react";
+import React from "react";
 
 const Job =(props)=>{
-    const [display,setDisplay]=useState(true);
 
-    const onFieldChange=(event)=> {
-        // for a regular input field, read field name and value from the event
-        const fieldName = event.target.name;
-        const fieldValue = event.target.value;
-        props.onChange(fieldName, fieldValue);
-    }
+    // handle input change
+    const InputField = (event, index) => {
+        const { name, value } = event.target;
+        props.jobChange(name,value,index)
+    };
+
+    // handle click event of the Remove button
+    const RemoveInput = (event,index) => {
+        props.removeJobButton(event,index);
+    };
 
     return(
         <div>
-        <form>
-            {display && (<div className='practicalExperience'>
             <h3>Practical Experience</h3>
-                <p>Company Name</p>
-                <input onChange={onFieldChange} value={props.companyName} type='text' name='companyName' placeholder='Company Name'/>
-                <p>Position Title</p>
-                <input onChange={onFieldChange} value={props.positionTitle} type='text' name='positionTitle'  placeholder='Position Title'/>
-                <p>Job Duty</p>
-                <input onChange={onFieldChange} value={props.duty} type='text' name='duty'  placeholder='Job Duty'/>
-                <p>From</p>
-                <input onChange={onFieldChange} value={props.dateFrom} type='text' name='dateFrom'  placeholder='Date From'/>
-                <p>To</p>
-                <input onChange={onFieldChange} value={props.dateTo} type='text' name='dateTo'  placeholder='Date To'/>
-            </div>)}
-        </form>
-        {display ===false && (<div>
-            Company Name:{props.companyName}<br/>
-            Position Title:{props.positionTitle}<br/>
-            Job Duty:{props.duty}<br/>
-            From:{props.dateFrom} -- {props.dateTo}
-        </div>)}
-        <button type="submit" onClick={()=>setDisplay(false)}>Submit</button>
-            <button type="button" onClick={()=>setDisplay(true)}>Edit</button>
-    </div>
+            {props.jobs.map((jobsDetails,i)=>{
+                return(
+                    <div>
+                        <div className='personalInfo'>
+                            <label htmlFor='companyName'>Company Name</label>
+                            <input onChange={event => InputField(event, i)} value={jobsDetails.companyName} type='text' name='companyName' placeholder='Company Name'/>
+                            <label htmlFor='text'>Position Title</label>
+                            <input onChange={event => InputField(event, i)} value={jobsDetails.positionTitle} type='text' name='positionTitle'  placeholder='Position Title'/>
+                            <label htmlFor='duty'>Job Duty</label>
+                            <input onChange={event => InputField(event, i)} value={jobsDetails.duty} type='text' name='duty'  placeholder='Job Duty'/>
+                            <label htmlFor='dateFrom'>From:</label>
+                            <input onChange={event => InputField(event, i)} value={jobsDetails.dateFrom} type='text' name='dateFrom'  placeholder='Date From'/>
+                            <label htmlFor='dateTo'>To:</label>
+                            <input onChange={event => InputField(event, i)} value={jobsDetails.dateTo} type='text' name='dateTo'  placeholder='Date To'/>
+                        </div>
+                        <div className="btn-box">
+                            {props.jobs.length !== 1 && <button
+                            className="mr10"
+                            onClick={(event) => RemoveInput(event,i)}>Remove</button>}
+                            {props.jobs.length - 1 === i && <button onClick={(event)=> props.addJobButton(event)}>Add</button>}
+                        </div>
+                    </div>
+                )
+            })}
+        </div>
     )
 }
 export default Job;
