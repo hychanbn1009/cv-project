@@ -2,10 +2,11 @@ import React from "react";
 import '../styles/Preview.css'
 import { Icon } from '@iconify/react';
 
-const Preview=(props)=>{
+
+export const Preview = React.forwardRef((props, ref) => {
 
     return(
-        <div className='CVpage'>
+        <div className='CVpage' id='CV-preview' ref={ref}>
             <div className='personalInfo'>
                 <div className='contact'>
                     <h1>{props.name}</h1>
@@ -22,7 +23,7 @@ const Preview=(props)=>{
                     </div>
                 </div>
             </div>
-            <p>Description</p>   
+            <h2>Description</h2>   
             <p>{props.summary}</p> 
             <hr/>
             <div className='experience'>
@@ -30,30 +31,37 @@ const Preview=(props)=>{
                     <h2>Working Experience</h2>
                     {props.jobs.map((jobsDetails,i)=>{
                         return (
-                            <div key={jobsDetails.id}>
-                                <div className='lasting'>
+                            <div className='details' key={jobsDetails.id}>
+                                <div className='top'>
                                 {jobsDetails.dateFrom}-{jobsDetails.dateTo}
                                 </div>
-                                <div>{jobsDetails.companyName}</div>
-                                <div>{jobsDetails.positionTitle}</div>
+                                <div className='bottom'>
+                                    <div className='bold'>{jobsDetails.positionTitle}</div>
+                                    <div>{jobsDetails.companyName}</div>
+                                    <div>{jobsDetails.duty}</div>
+                                </div>
                             </div>
                         )
                     })}
                 </div>
+                <hr/>
                 <div className='schoolInfo'>
                     <h2>Education</h2>
                     {props.educations.map((educationDetails,i)=>{
-                        return <li key={educationDetails.id}>
-                            {educationDetails.schoolName}<br/>
-                            {educationDetails.schoolTitle}<br/>
-                            {educationDetails.studyDate}<br/>
-                            {educationDetails.gradDate}
-                            </li>
+                        return (
+                            <div className='details' key={educationDetails.id}>
+                            <div className='top'>
+                            {educationDetails.studyDate}-{educationDetails.gradDate}
+                            </div>
+                            <div className='bottom'>
+                                <div className='bold'>{educationDetails.schoolName}</div>
+                                <div>{educationDetails.schoolTitle}</div>
+                            </div>
+                        </div>
+                        )
                     })}
                 </div> 
             </div>     
         </div>
     )
-}
-
-export default Preview;
+})

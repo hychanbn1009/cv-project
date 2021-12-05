@@ -15,27 +15,46 @@ const Job =(props)=>{
 
     return(
         <div>
-            <h3>Practical Experience</h3>
+            <div className='title' id='experience-title'>Experience</div>
             {props.jobs.map((jobsDetails,i)=>{
                 return(
                     <div>
                         <div className='personalInfo'>
-                            <label htmlFor='companyName'>Company Name</label>
-                            <input onChange={event => InputField(event, i)} value={jobsDetails.companyName} type='text' name='companyName' placeholder='Company Name'/>
-                            <label htmlFor='text'>Position Title</label>
-                            <input onChange={event => InputField(event, i)} value={jobsDetails.positionTitle} type='text' name='positionTitle'  placeholder='Position Title'/>
-                            <label htmlFor='duty'>Job Duty</label>
-                            <input onChange={event => InputField(event, i)} value={jobsDetails.duty} type='text' name='duty'  placeholder='Job Duty'/>
-                            <label htmlFor='dateFrom'>From:</label>
-                            <input onChange={event => InputField(event, i)} value={jobsDetails.dateFrom} type='text' name='dateFrom'  placeholder='Date From'/>
-                            <label htmlFor='dateTo'>To:</label>
-                            <input onChange={event => InputField(event, i)} value={jobsDetails.dateTo} type='text' name='dateTo'  placeholder='Date To'/>
+                            <div className='inline-form'>
+                                <div class='input-container ic1'>
+                                    <input onChange={event => InputField(event, i)} value={jobsDetails.companyName} type='text' name='companyName' placeholder='' className='input'/>
+                                    <div className='cut'></div>
+                                    <label htmlFor='companyName' className='placeholder'>Company</label>
+                                </div>
+                                <div class='input-container ic1'>
+                                    <input onChange={event => InputField(event, i)} value={jobsDetails.positionTitle} type='text' name='positionTitle'  placeholder='' className='input'/>
+                                    <div className='cut'></div>
+                                    <label htmlFor='text' className='placeholder'>Position</label>
+                                </div>
+                            </div>
+                            <div class='input-container ic2'>
+                                <input onChange={event => InputField(event, i)} value={jobsDetails.duty} type='text' name='duty'  placeholder='' className='input'/>
+                                <div className='cut'></div>
+                                <label htmlFor='duty' className='placeholder'>Duty</label>
+                            </div>
+                            <div className='inline-form'>
+                                <div class='input-container ic1'>
+                                    <input onChange={event => InputField(event, i)} value={jobsDetails.dateFrom} type='text' name='dateFrom'  placeholder='' className='input'/>
+                                    <div className='cut'></div>
+                                    <label htmlFor='dateFrom' className='placeholder'>From:</label>
+                                </div>
+                                <div class='input-container ic1'>
+                                    <input onChange={event => InputField(event, i)} value={jobsDetails.dateTo} type='text' name='dateTo'  placeholder='' className='input'/>
+                                    <div className='cut'></div>
+                                    <label htmlFor='dateTo' className='placeholder'>To:</label>
+                                </div>
+                            </div>
                         </div>
                         <div className="btn-box">
                             {props.jobs.length !== 1 && <button
-                            className="mr10"
-                            onClick={(event) => RemoveInput(event,i)}>Remove</button>}
-                            {props.jobs.length - 1 === i && <button onClick={(event)=> props.addJobButton(event)}>Add</button>}
+                            className='delete'
+                            onClick={(event) => RemoveInput(event,i)}>Delete</button>}
+                            {props.jobs.length - 1 === i && <button className='add' onClick={(event)=> props.addJobButton(event)}>Add</button>}
                         </div>
                     </div>
                 )

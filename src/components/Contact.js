@@ -14,17 +14,36 @@ const Contact=(props)=>{
         <div>
             <div>
                 <div className='personalInfo'>
-                    <h3>Personal Information</h3>
-                    <label htmlFor='name'>Name</label>
-                    <input onChange={onFieldChange} value={props.name} type='text' name='name' placeholder='Name'/>
-                    <label htmlFor='title'>Title</label>
-                    <input onChange={onFieldChange} value={props.title} type='text' name='title' placeholder='Title'/>
-                    <label htmlFor='email'>Email</label>
-                    <input onChange={onFieldChange} value={props.email} type='email' name='email' placeholder='Email'/>
-                    <label htmlFor='phone'>Phone</label>
-                    <input onChange={onFieldChange} value={props.phone} type='tel' name='phone' placeholder='Phone'/>
-                    <label htmlFor='summary'>Summary</label>
-                    <textarea onChange={onFieldChange} value={props.summary} name='summary' placeholder='Summary'/>
+                    <div className='title'>Personal Information</div>
+                    <div className='inline-form'>
+                        <div class='input-container ic1'>
+                                <input onChange={onFieldChange} value={props.name} type='text' name='name' placeholder='' className='input'/>
+                                <div className='cut'></div>
+                                <label htmlFor='name' className='placeholder'>Name</label>
+                            </div>
+                            <div class='input-container ic1'>
+                                <input onChange={onFieldChange} value={props.title} type='text' name='title' placeholder='' className='input'/>
+                                <div className='cut'></div>
+                                <label htmlFor='title' className='placeholder'>Title</label>
+                            </div>
+                    </div>
+                    <div className='inline-form'>
+                        <div class='input-container ic1'>
+                            <input onChange={onFieldChange} value={props.email} type='email' name='email' placeholder='' className='input'/>
+                            <div className='cut'></div>
+                            <label htmlFor='email' className='placeholder'>Email</label>
+                        </div>
+                        <div class='input-container ic1'>
+                            <input onChange={onFieldChange} value={props.phone} type='tel' name='phone' placeholder='' className='input'/>
+                            <div className='cut'></div>
+                            <label htmlFor='phone' className='placeholder'>Phone</label>
+                        </div>
+                    </div>
+                        <div class='input-container ic2'>
+                            <input onChange={onFieldChange} value={props.summary} name='summary' placeholder='' className='input' id='textarea'/>
+                            <div className='cut'></div>
+                            <label htmlFor='summary' className='placeholder'>Summary</label>
+                        </div>
                 </div>
             </div>
         </div>

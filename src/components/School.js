@@ -16,25 +16,40 @@ const School =(props)=>{
 
     return(
         <div>
-            <h3>Educational Experience</h3>
+            <div className='title' id='education-title'>Education</div>
             {props.educations.map((educationDetails,i)=>{
                 return(
                     <form>
                         <div className='personalInfo'>
-                            <label htmlFor='schoolName'>School Name</label>
-                            <input onChange={event => InputField(event, i)} value={educationDetails.schoolName} type='text' name='schoolName' placeholder='School Name'/>
-                            <label htmlFor='schoolTitle'>Title of study</label>
-                            <input onChange={event => InputField(event, i)} value={educationDetails.schoolTitle} type='text' name='schoolTitle' placeholder='School Title'/>
-                            <label htmlFor='studyDate'>From:</label>
-                            <input onChange={event => InputField(event, i)} value={educationDetails.studyDate} type='text' name='studyDate' placeholder='Entry Date'/>
-                            <label htmlFor='gradDate'>To:</label>
-                            <input onChange={event => InputField(event, i)} value={educationDetails.gradDate} type='text' name='gradDate' placeholder='Graduation Date'/>
+
+                            <div class='input-container ic1'>
+                                <input onChange={event => InputField(event, i)} value={educationDetails.schoolName} type='text' name='schoolName' placeholder='' className='input'/>
+                                <div className='cut'></div>
+                                <label htmlFor='schoolName' className='placeholder'>School</label>
+                            </div>
+                            <div class='input-container ic1'>
+                                <input onChange={event => InputField(event, i)} value={educationDetails.schoolTitle} type='text' name='schoolTitle' placeholder='' className='input'/>
+                                <div className='cut'></div>
+                                <label htmlFor='schoolTitle' className='placeholder'>Subject</label>
+                            </div>
+                            <div className='inline-form'>
+                                <div class='input-container ic1'>
+                                    <input onChange={event => InputField(event, i)} value={educationDetails.studyDate} type='text' name='studyDate' placeholder='' className='input'/>
+                                    <div className='cut'></div>
+                                    <label htmlFor='studyDate' className='placeholder'>From:</label>
+                                </div>
+                                <div class='input-container ic1'>
+                                    <input onChange={event => InputField(event, i)} value={educationDetails.gradDate} type='text' name='gradDate' placeholder='' className='input'/>
+                                    <div className='cut'></div>
+                                    <label htmlFor='gradDate' className='placeholder'>To:</label>
+                                </div>
+                            </div>
                         </div>
                         <div className="btn-box">
                             {props.educations.length !== 1 && <button
-                            className="mr10"
-                            onClick={(event) => RemoveInput(event,i)}>Remove</button>}
-                            {props.educations.length - 1 === i && <button onClick={(event)=> props.addEducation(event)}>Add</button>}
+                            className='delete'
+                            onClick={(event) => RemoveInput(event,i)}>Delete</button>}
+                            {props.educations.length - 1 === i && <button className='add' onClick={(event)=> props.addEducation(event)}>Add</button>}
                         </div>
                     </form>
                 )

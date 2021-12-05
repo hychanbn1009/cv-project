@@ -1,6 +1,6 @@
 .CVpage{
-    background-color: khaki;
-    padding: 1rem;
+    background-color: white;
+    padding: 3rem;
 }
 
 .contactInfo{
@@ -9,4 +9,29 @@
 
 .experience{
     list-style-type: none;
+    height: 60vh;
+}
+
+.details{
+    display:flex;
+    font-size: 15px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.top{
+    width: 35%;
+}
+
+.bottom{
+    width: 65%;
+}
+
+#experience-title{
+    padding-top: 1rem;
+}
+
+.bold{
+    font-size: 18px;
+    font-weight: 600;
 }
